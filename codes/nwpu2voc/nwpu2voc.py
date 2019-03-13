@@ -5,6 +5,11 @@ import re
 import shutil
 import numpy as np
 
+"""
+需放到西工大数据集根目录执行
+若要转换为标准 VOC 格式, 将含有 zfill() 函数的行取消注释, 并注释被替代的行即可
+"""
+
 classes = ["aeroplane", "ship", "storage_tank", "baseball_diamond",
            "tennis_court", "basketball_court", "ground_track_field",
            "harbor", "bridge", "vehicle"]
@@ -82,12 +87,14 @@ def get_annotations():
             b = (int(cor_list[0]), int(cor_list[2]), int(cor_list[1]), int(cor_list[3]))
             cls_num = int(cor_list[4]) - 1
             name = classes[cls_num]
-            sort_result[cls_num].append(int(filename))
+            sort_result[cls_num].append(filename)
             tmp_str += '\n' + s1.format(name, b[0], b[2], b[1], b[3])
 
-        img_name = filename.zfill(6) + '.jpg'
+        img_name = filename + '.jpg'
+        # img_name = filename.zfill(6) + '.jpg'
         result = s2.format(img_name, os.getcwd() + '/' + img_name, img_size[0], img_size[1], tmp_str)
-        f = open('./VOCdevkit/VOC2007/Annotations/' + filename.zfill(6) + '.xml', 'w')
+        f = open('./VOCdevkit/VOC2007/Annotations/' + filename + '.xml', 'w')
+        # f = open('./VOCdevkit/VOC2007/Annotations/' + filename.zfill(6) + '.xml', 'w')
         f.write(result)
         f.close()
     return sort_result
@@ -96,7 +103,8 @@ def get_annotations():
 def cp_imgs():
     filelist = glob.glob('./positive_image_set/*.jpg')
     for img in filelist:
-        new_path = './VOCdevkit/VOC2007/JPEGImages/' + img[-7:-4].zfill(6) + '.jpg'
+        new_path = './VOCdevkit/VOC2007/JPEGImages/' + img[-7:-4] + '.jpg'
+        # new_path = './VOCdevkit/VOC2007/JPEGImages/' + img[-7:-4].zfill(6) + '.jpg'
         shutil.copy(img, new_path)
 
 
@@ -128,13 +136,13 @@ def get_text(test_rate, sort_result):
     with open('./VOCdevkit/VOC2007/ImageSets/Main/trainval.txt', 'w') as file:
         for i in range(0, len(train_set)):
             str_i = str(train_set[i])
-            str_i = str_i.zfill(6)
+            # str_i = str_i.zfill(6)
             file.write(str_i + '\n')
 
     with open('./VOCdevkit/VOC2007/ImageSets/Main/test.txt', 'w') as file:
         for i in range(0, len(test_set)):
             str_i = str(test_set[i])
-            str_i = str_i.zfill(6)
+            # str_i = str_i.zfill(6)
             file.write(str_i + '\n')
 
 

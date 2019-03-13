@@ -1,1 +1,0 @@
-python reval_voc.py --voc_dir VOCdevkit --year 2007 --image_set test --class ./data/voc.names .

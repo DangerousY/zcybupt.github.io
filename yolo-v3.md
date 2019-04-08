@@ -416,6 +416,3 @@ Results should be very close to the official MATLAB eval code.
 ## 后记
 
 个人水平有限, 文章难免出现错误, 欢迎指出
-
-如有问题可微信交流: zcybupt2016
-

@@ -149,7 +149,7 @@ mv positive\ image\ set positive_image_set
 转换标注, 代码见 [Github](https://github.com/zcybupt/zcybupt.github.io/blob/master/codes/nwpu_vhr_label.py)
 
 ```
-pip install numpy opencv-python scikit-image PIL    # 安装所需 Python 库
+pip install numpy opencv-python scikit-image pillow    # 安装所需 Python 库
 mkdir labels
 python nwpu_vhr_label.py
 ```
